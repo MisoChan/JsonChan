@@ -1,39 +1,32 @@
 package com.launchpersimmonseeds.jsonchan.entity;
 
 import com.launchpersimmonseeds.jsonchan.constants.Constants;
+import com.launchpersimmonseeds.jsonchan.interfaces.JsonEntityInterface;
 
-public class JsonEntity {
+public class JsonFieldsEntity extends JsonEntityBase implements JsonEntityInterface {
 
-    private String keyname;
+
 
     private String value;
 
-    public JsonEntity(String keyname, String value) {
+    private boolean stringFlg = true;
+
+    public boolean isStringFlg() {
+        return stringFlg;
+    }
+
+    public void setStringFlg(boolean stringFlg) {
+        this.stringFlg = stringFlg;
+    }
+
+    public JsonFieldsEntity(String keyname, String value) {
         this.keyname = keyname;
         this.value = value;
     }
 
-    public String getKeyname() {
-        return keyname;
-    }
 
-    /**
-     * return JsonKeyString
-     * @return
-     */
-    public String getJsonKeyname() {
-        //"KeyName": が返却されるはず…
-        StringBuilder builder = new StringBuilder();
-        builder.append(Constants.JSON_CONTROL_CHARACTER.CHARACTER_DOUBLE_QUOTE.getStr())
-                .append(this.getKeyname())
-                .append(Constants.JSON_CONTROL_CHARACTER.CHARACTER_DOUBLE_QUOTE.getStr())
-                .append(Constants.JSON_CONTROL_CHARACTER.OBJECT.getStr());
-        return builder.toString();
-    }
 
-    public void setKeyname(String keyname) {
-        this.keyname = keyname;
-    }
+
 
     public String getValue() {
         return value;
@@ -43,21 +36,25 @@ public class JsonEntity {
         this.value = value;
     }
 
+    /**
+     * return JsonKeyString
+     * @return
+     */
     public String getJsonPropString(){
         // "KeyName" : value が返却される…ハズ
         StringBuilder builder = new StringBuilder();
         builder.append(this.getJsonKeyname())
                 //NULLならnullになる
                 .append(this.getValue() != null
-                        ? this.getValue()
+                        ? Constants.JSON_CONTROL_CHARACTER.CHARACTER_DOUBLE_QUOTE.getStr()+this.getValue()+Constants.JSON_CONTROL_CHARACTER.CHARACTER_DOUBLE_QUOTE.getStr()
                         : Constants.JSON_CONTROL_CHARACTER.NULL.getStr());
         return builder.toString();
     }
 
     @Override
     public boolean equals(Object object){
-        if(object instanceof  JsonEntity){
-            JsonEntity entity = (JsonEntity) object;
+        if(object instanceof JsonFieldsEntity){
+            JsonFieldsEntity entity = (JsonFieldsEntity) object;
             /*
              * KEY と VALUEが一致すれば同一とみなす。
              */

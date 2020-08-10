@@ -1,14 +1,26 @@
+import com.launchpersimmonseeds.jsonchan.annotations.JsonObject;
+import com.launchpersimmonseeds.jsonchan.annotations.JsonValue;
+
+import java.util.ArrayList;
 import java.util.List;
-
+@JsonObject(name = "TEST")
 public class TestEntity {
-
+    @JsonValue(column = "key")
     private String key;
-
+    @JsonValue(column = "intValue")
     private int value;
 
     private String neko;
+    @JsonValue(column = "nekolist")
+    private List<TestChildEntity> nekolist = new ArrayList<>();
 
-    private List<TestEntity> nekolist;
+    public List<TestChildEntity> getNekolist() {
+        return nekolist;
+    }
+
+    public void setNekolist(List<TestChildEntity> nekolist) {
+        this.nekolist = nekolist;
+    }
 
     public String getKey() {
         return key;
@@ -34,12 +46,7 @@ public class TestEntity {
         this.neko = neko;
     }
 
-    public List<TestEntity> getNekolist() {
-        return nekolist;
-    }
 
-    public void setNekolist(List<TestEntity> nekolist) {
-        this.nekolist = nekolist;
-    }
+
 }
 
