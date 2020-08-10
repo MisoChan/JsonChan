@@ -1,7 +1,7 @@
 import com.launchpersimmonseeds.jsonchan.annotations.JsonObject;
 import com.launchpersimmonseeds.jsonchan.annotations.JsonValue;
 
-@JsonObject(name = "cats")
+@JsonObject("cats")
 public class TestChildEntity {
     @JsonValue(column = "ID")
     private String nekoID;

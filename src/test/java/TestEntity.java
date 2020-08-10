@@ -3,7 +3,7 @@ import com.launchpersimmonseeds.jsonchan.annotations.JsonValue;
 
 import java.util.ArrayList;
 import java.util.List;
-@JsonObject(name = "TEST")
+@JsonObject(value = "TEST")
 public class TestEntity {
     @JsonValue(column = "key")
     private String key;

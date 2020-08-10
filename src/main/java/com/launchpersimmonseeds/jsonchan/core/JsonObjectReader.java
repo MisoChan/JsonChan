@@ -2,7 +2,6 @@ package com.launchpersimmonseeds.jsonchan.core;
 
 import com.launchpersimmonseeds.jsonchan.annotations.JsonObject;
 import com.launchpersimmonseeds.jsonchan.annotations.JsonValue;
-import com.launchpersimmonseeds.jsonchan.constants.Constants;
 import com.launchpersimmonseeds.jsonchan.entity.JsonFieldsEntity;
 import com.launchpersimmonseeds.jsonchan.entity.JsonObjectEntity;
 
@@ -35,7 +34,7 @@ public class JsonObjectReader {
         Field fields[] = getObjectField(object);
         String objName;
         if(object.getClass().isAnnotationPresent(JsonObject.class)){
-            objName=object.getClass().getAnnotation(JsonObject.class).name();
+            objName=object.getClass().getAnnotation(JsonObject.class).value();
             ent.setKeyname(objName);
         }
         for(Field f :fields){
